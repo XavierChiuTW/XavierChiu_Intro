@@ -1,0 +1,404 @@
+//顏色定義
+$color_blue: #282f44
+$color_brown: #E6AF2E
+$color_yellow: #f5d061
+$color_white: #ececec
+//-------------------------------------
+//改變預設字型
+*
+  font-family: 'Oswald', PingFang TC
+  
+// debug用
+// * 
+//   border: solid 1px !important
+// header,
+// section
+//   display: none
+// #section_contact
+//   display: block
+  
+//-------------------------------------
+//一些常用的mixin
+// 絕對位置置中
+@mixin ab_center
+  position: absolute
+  left: 50%
+  top: 50%
+  transform: translate(-50%,-50%)
+
+// 自訂寬高
+@mixin size($w,$h)
+  width: $w
+  height: $h
+  
+//-------------------------------------
+html,body
+  // 左右超出邊界部分隱藏 快捷鍵ovxh + tab
+  overflow-x: hidden
+  font-size: 16px
+  // 實驗下滑效果用
+  // height: 200vh
+  
+//首頁
+header
+  // 因為裡面有元素需要對他作絕對定位的置中 因此需要給他相對定位
+  position: relative
+  background-color: $color_blue
+  // 文字水平置中
+  text-align: center
+  
+  .icon
+    // 寬度為container的80%
+    width: 80%
+    // 最大寬度不超過250px
+    max-width: 250px
+    // 給內邊距來把header撐開
+    padding: 250px 0px
+    
+  //底部邊界
+  .marginbottom
+    position: absolute
+    // 寬度為container的95%
+    width: 95%
+    bottom: 0px
+    // 向右偏移20px
+    right: -20px
+    // z-index: 3
+    // 引入動畫 從下方浮上來 動畫時間2秒 前後都要填充
+    animation: upin 2s both
+  
+  // 加入動畫 從下方浮上來
+  @keyframes upin
+    0%
+      bottom: -100px
+    100%
+      bottom: 0px
+    
+  .explore
+    // 引入@mixin ab_center 元素置中
+    +ab_center
+    font-size: 16px
+    color: $color_yellow
+    top: 85%
+    // 透明度預設0(透明)
+    opacity: 0
+    // 動畫漸變時間0.5秒
+    transition: 0.5s
+    // 製作向下的箭頭
+    &:after
+      // 轉為塊元素(獨占一行)
+      display: block
+      content: "v"
+      // 變形 寬度變為1.2倍 高度變為0.5倍
+      transform: scaleX(1.2) scaleY(0.5)
+    &.at_top
+      opacity: 1
+//-------------------------------------
+//導覽列
+nav.navbar
+  // 動畫漸變時間0.5秒
+  transition: 0.5s
+  a
+    // 滑鼠移入時顏色建變
+    transition: 0.5s
+//--導覽列在上方時透明
+nav.navbar.at_top
+  background-color: transparent
+  a, a:visited
+    color: white
+//-------------------------------------
+//所有section區域的共同設定
+section
+  padding: 60px 0px
+  // 因為內部有很多元素會用到絕對定位 因此先把section設定為相對定位
+  position: relative
+//-------------------------------------
+//Section 簡介
+section#section_about
+  background-color: $color_brown
+  //旋轉的grid
+  // 整個區域協向排版 只需旋轉包住整個區域的標籤
+  .container
+    // 向右旋轉15度 縮小為0.9倍
+    transform: rotate(15deg) scale(0.9)
+    
+  .row
+    // 用row來撐高section的高度
+    height: 150px
+    color: black
+    .r1text
+      font-size: 80px
+      // 動畫漸變 文字建變時間不同可以製作出類似延遲的效果
+      transition: 0.1s 
+    .r2text
+      font-size: 35px
+      // 動畫漸變
+      transition: 0.2s
+    .r3text
+      font-size: 50px
+      // 動畫漸變
+      transition: 0.3s
+      // 文字向右對齊
+      text-align: right
+      
+  // 動來動去貓
+  .cat
+    // 寬度
+    width: 30
+    // 限制貓頭大小
+    max-width: 300px
+    position: absolute
+    bottom: -2px
+    right: 25px
+  
+  //底部邊界
+  .marginbottom
+    position: absolute
+    width: 60%
+    // 向下偏移至最底向上修正一點點 因為只設定100%得時候會出現一條細細的白邊
+    // calc是css的計算功能
+    top: calc(100% - 2px)
+    // 放在最上層
+    z-index: 3
+    
+  .btn-area
+    height: 150px
+  a
+    // 置中
+    +ab_center
+    transform: translate(-50%,-50%) rotate(10deg)
+    
+    
+  //滑鼠的叉叉
+  #cross
+    position: absolute
+    z-index: 6
+    
+    //讓滑鼠點擊會穿過
+    pointer-events: none
+    
+    &:before,&:after
+      content: ""
+      display: block
+    
+      +size(80px,15px)
+      background-color: #fff
+      +ab_center
+      transform: translate(-50%,-50%) rotate(45deg)
+    
+    &:after
+      transform: translate(-50%,-50%) rotate(136deg)
+    
+  // 三角形碎塊
+  // 因為三角形跟著container一起旋轉 所以角度需要再扣掉container旋轉的角度才是正確的角度
+  .tri
+    transform: rotate(-15deg)
+  .tri1
+    width: 350px
+  .tri2
+    width: 20px
+    margin-left: 20px
+  .tri3
+    width: 150px
+    margin-left: 70%
+  .tri4
+    width: 70px
+    margin-left: 100%
+  .tri5
+    width: 80px
+    margin-left: 100%
+//-------------------------------------
+//Section 服務
+section#section_service
+  background-color: $color_white
+  
+  .col-sm-4
+    text-align: center
+    
+  // h1
+    background-color: $color_blue
+    color: $color_white
+    font-size: 24px
+    padding: 5px 20px
+    display: inline-block
+    font-weight: normal
+    
+  h3 
+    color: $color_brown
+    
+  .icon_service
+    width: 60%
+//-------------------------------------
+//Section 作品
+section#section_works
+  background-color: $color_white
+  padding-top: 0px
+  h1
+    background-color: $color_blue
+    color: $color_white
+    font-size: 24px
+    padding: 6px 25px
+    display: inline-block
+    font-weight: normal
+ 
+  // 向下的山
+  .marginbottom
+    position: absolute
+    width: 90%
+    right: 0px
+    // 離上面100% 再回推2px
+    top: calc(100% - 2px)
+    // 排序往前
+    z-index: 3
+    max-width: 900px    
+  .col-sm-6
+    overflow: hidden
+  
+  // 專案框框的共同屬性
+  .work
+    height: 230px
+    cursor: pointer
+    // 因為裡面有元素需要作絕對定位
+    position: relative
+    padding: 5px
+    // 隱藏超出部分 快捷建ovh
+    overflow: hidden
+    // 螢幕小於700px 時所有作品高度套用.big的高度
+    @media screen and (max-width: 700px)
+      height: 460px
+    
+    // 大框框專用class
+    &.big
+      height: 460px
+
+        
+    
+    // 製作進入前的黑幕
+    &:before
+      // content是位元素必要屬性 不需要田內容就給空白雙引號
+      content: ""
+      display: block
+      // 尺寸 上下左右稱滿
+      +size(100%,100%)
+    
+      // 絕對置中
+      +ab_center
+      // position: absolute
+      // left: 0
+      // top: 0
+      
+      // 背景顏色 透明度0.7黑色
+      background-color: rgba(0,0,0,0.7)
+      // 箭頭移入才出現文字 先預設能見度0
+      opacity: 0
+      // 排序往前
+      z-index: 5
+      // 漸變
+      transition: 0.5s
+    
+    // 專案標題樣式設定  
+    .texts
+      // 絕對置中
+      +ab_center
+      // 自的順序也往前 比黑幕前
+      z-index: 5
+      // 箭頭移入才出現文字 先預設能見度0
+      opacity: 0
+      color: white
+      // 漸變
+      transition: 0.5s
+      
+      .title
+        line-height: 24px
+   
+    // 滑鼠移入事件
+    &:hover   
+      // 黑幕和文字能見度變為1
+      &:before,
+      .texts     
+        opacity: 1
+      
+  .work img
+    // 高度稱滿容器 寬度自動
+    height: 100%
+    // 絕對置中
+    +ab_center
+    // 當螢幕小於700px時
+    @media screen and (max-width: 700px)
+      height: auto
+      width: 110%
+    
+//-------------------------------------
+//Section 聯絡資訊
+section#section_contact
+  background-color: $color_blue
+  color: white
+  // 隱藏超出的部分
+  overflow: hidden  
+
+  // 信件
+  .mails
+    height: 400px
+    max-width: 500px
+    
+
+  .mailbody
+    background-color: $color_white
+    color: $color_blue   
+    padding: 20px
+    padding-left: 40px
+    position: absolute
+    width: 90%
+    transform: translateX(-30px)     
+    // label
+      // margin-top: 10px
+    
+    // 信件文字輸入區域
+    input,
+    textarea
+      // 獨占一行
+      display: block
+      background-color: transparent    
+      border: none
+      // 輸入框邊框
+      border: solid 3px $color_blue     
+      // padding: 1px 2px      
+    textarea
+      height: 140px
+      width: 100%
+      
+  //信封
+  .mailcover
+    +ab_center
+    top: 70%
+    // 旋轉 放大 移動
+    transform: rotate(5deg) scale(2.2) translate(-50%,-50%)
+    img
+      width: 120%
+
+  // 三隻貓  
+  .cat
+    width: 150px
+    position: absolute
+    bottom: 0px
+    transition: 0.3s
+  #cat_blue
+    right: 240px
+    z-index: 3
+  #cat_grey
+    right: 100px
+  #cat_yellow
+    right: 170px
+    
+//-------------------------------------
+//footer 底部
+footer#footer
+  background-color: $color_brown
+  // 文字置中
+  text-align: center 
+  // 底部icon設定
+  .icon
+    width: 80%
+    max-width: 250px
+    // 上下的內邊距80px
+    padding: 80px 0px
