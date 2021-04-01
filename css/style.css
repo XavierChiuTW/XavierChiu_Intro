@@ -19,7 +19,12 @@ h1 {
   line-height: 1.5;
 }
 
+a {
+  color: #eee;
+}
+
 a:hover {
+  color: #a3a3a3;
   text-decoration: none;
 }
 
@@ -46,6 +51,24 @@ a:hover {
 
 #title .container-fluid {
   padding: 3% 15% 7%;
+}
+
+#title a {
+  color: #eee;
+}
+
+#title a:hover {
+  color: #a3a3a3;
+  text-decoration: none;
+}
+
+#titleText a {
+  color: #eee;
+}
+
+#titleText a:hover {
+  color: #a3a3a3;
+  text-decoration: none;
 }
 
 .navbar {
@@ -114,14 +137,19 @@ a:hover {
   background-color: #ffb900;
 }
 
-#projects h2 {
-  font-size: 3rem;
+#projects .carousel-item {
+  position: relative;
+}
+
+#projects .carousel-item h2 {
+  max-width: 80%;
+  position: absolute;
+  font-size: 2rem;
   line-height: 1.5;
 }
 
-#projects img {
-  width: 10%;
-  border-radius: 100%;
+#projects .carousel-item img {
+  width: 100%;
 }
 
 #practice {
@@ -145,15 +173,6 @@ a:hover {
 #more h3 {
   font-size: 3.5rem;
   line-height: 1.5;
-}
-
-#more a {
-  color: #eee;
-}
-
-#more a:hover {
-  color: #a3a3a3;
-  text-decoration: none;
 }
 
 #footer {
