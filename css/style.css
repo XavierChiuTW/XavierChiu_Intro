@@ -45,6 +45,7 @@ a:hover {
   background-image: url(../images/code.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
   text-align: left;
   color: #ffb900;
 }

@@ -1,0 +1,186 @@
+@charset "UTF-8";
+* {
+  font-family: "Heiti TC","HeitiTC-Light","LiHei","微軟正黑體","Lato","Verdana";
+  position: relative;
+  vertical-align: top;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f3f3f1;
+}
+
+.orange {
+  color: #FA8B00;
+  padding-left: 3px;
+}
+
+.banner {
+  height: 400px;
+  background: linear-gradient(-45deg, #FFE18D 10%, #FFE18D 10%, #FFDA71 10%, #FFDA71 40%, #FFE18D 40%, #FFE18D 60%, #FFDA71 60%, #FFDA71 90%, #FFE18D 90%, #FFE18D 100%);
+  background-size: 46px 46px;
+  margin-bottom: 30px;
+}
+
+.banner .center_banner {
+  background-color: #fff;
+  padding: 20px 30px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 1024px;
+}
+
+.classbox {
+  width: 260px;
+  background-color: white;
+  color: #4F4C4B;
+  border-radius: 5px;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  margin: 25px 15px;
+}
+
+.classbox:hover .classpicture {
+  transform: scale(1.13);
+}
+
+.classbox:hover .top .bookbtn {
+  bottom: 10px;
+}
+
+.classbox:hover .bottom .progressbar .valuebar {
+  width: 150px;
+}
+
+.classbox .teacher {
+  position: absolute;
+  left: 15px;
+  top: -27.5px;
+  width: 55px;
+  height: 55px;
+  background-size: cover;
+  border: solid 2px white;
+  border-radius: 50%;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.classbox .top {
+  height: 160px;
+  border-radius: 5px 5px 0px 0px;
+  overflow: hidden;
+}
+
+.classbox .top .classpicture {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-image: url("https://hahow.in/images/574fab4f206cd60900c52a67?width=300");
+  background-size: cover;
+  transition-duration: 0.3s;
+}
+
+.classbox .top .tag {
+  width: 100%;
+  text-align: center;
+  padding: 5px 0px;
+  transform: translateX(95px) translateY(15px) rotate(45deg);
+  background-color: #EB5E00;
+  color: white;
+  font-weight: 700;
+}
+
+.classbox .top .bookbtn {
+  width: 42px;
+  height: 42px;
+  background-color: white;
+  color: #EB5E00;
+  position: absolute;
+  left: 15px;
+  bottom: -50px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: bottom 0.4s;
+}
+
+.classbox .top .bookbtn i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 22px;
+}
+
+.classbox .top .bookbtn:hover {
+  background-color: #EB5E00;
+}
+
+.classbox .top .bookbtn:hover i {
+  color: white;
+}
+
+.bottom {
+  height: 184px;
+  padding: 15px;
+}
+
+.bottom .classtitle {
+  margin-top: 0px;
+  font-size: 25px;
+}
+
+.bottom .texts {
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+.bottom .texts .pricerow {
+  margin-bottom: 10px;
+}
+
+.bottom .texts .pricerow .lastday {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.bottom .texts .progressbar {
+  height: 10px;
+  margin-bottom: 10px    　;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #e3e3de;
+}
+
+.bottom .texts .progressbar .valuebar {
+  background-color: #FA8B00;
+  width: 50px;
+  height: 100%;
+  transition-duration: 1s;
+}
+
+.orangebar {
+  position: absolute;
+  bottom: 0px;
+  height: 5px;
+  background-color: #EB5E00;
+  width: 100%;
+  border-radius: 0px 0px 5px 5px;
+}
+
+.nowpeople {
+  text-align: center;
+}
+/*# sourceMappingURL=style.css.map */

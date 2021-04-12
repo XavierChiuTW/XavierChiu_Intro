@@ -1,0 +1,302 @@
+//顏色定義區(橘/灰/深橘)
+$color_orange: #FA8B00
+$color_grey: #f3f3f1
+$color_dark_orange: #EB5E00
+$color_yellow: #FFE18D
+$color_dark_yellow: #FFDA71
+$color_dark_grey: #4F4C4B
+
+//尺寸定義區 (標題/內文/書籤按鈕/書籤icon/老師icon)
+$size_title: 25px
+$size_para: 15px
+$size_bookbtn: 42px
+$size_icon: 22px
+$size_teacher: 55px
+
+//尺寸(課程/上下半部/進度條/預購價/底部橘條)
+$width_class: 260px
+$height_toppart: 160px
+$height_bottompart: 184px
+$height_progressbar: 10px
+$height_pricerow: 22px
+$height_bottomorange: 5px
+
+//尺寸(課程框框的padding)
+$padding_class: 15px
+
+//預設圖片Url
+// 老師圖片url
+$url_teacher: "https://hahow.in/images/57ab3d5585b097070042067a"
+// 課程圖片url
+$url_class: "https://hahow.in/images/574fab4f206cd60900c52a67?width=300"
+
+// 置中
+@mixin ab_center
+  position: absolute
+  left: 50%
+  top: 50%
+  transform: translate(-50%,-50%)
+
+// @mixin size($w,$h)
+  // width: $w
+  // height: $h
+
+@mixin bsha
+  box-shadow: 0px 0px 12px rgba(#000,0.2)
+
+*
+  // border: solid 1px
+  font-family: "Heiti TC","HeitiTC-Light","LiHei","微軟正黑體","Lato","Verdana"
+  // color: $color_dark_grey
+  // 把所有標籤都預設為相對定位 之後使用絕對定位會比較方便
+  position: relative
+  // 因為預設是基線排列所以會有元素對不齊的問題 這邊統一改為對齊上緣
+  vertical-align: top
+  
+// 把所有內外邊距都規零
+html,
+body
+  margin: 0
+  padding: 0
+
+body
+  // padding: 30px
+  background-color: $color_grey
+    
+.orange
+  color: $color_orange
+  // font-weight: 500
+  // 左邊內邊距
+  padding-left: 3px
+
+.banner
+  height: 400px
+  // linear-gradient線性漸層
+  // background: linear-gradient(-45deg, $color_dark_yellow 50%, $color_yellow 50%)
+  // -45deg向左傾斜45度 顏色後面的百分比指的是從百分之幾開始漸層
+  background: linear-gradient(-45deg,$color_yellow 10%,$color_yellow 10%,$color_dark_yellow 10%,$color_dark_yellow 40%,$color_yellow 40%,$color_yellow 60%,$color_dark_yellow 60%,$color_dark_yellow 90%,$color_yellow 90%,$color_yellow 100%)
+  // 限制背景大小
+  background-size: 46px 46px
+  margin-bottom: 30px
+  .center_banner
+    // display: inline-block
+    background-color: #fff
+    padding: 20px 30px
+    border-radius: 5px
+    +bsha
+    +ab_center
+    width: 1024px
+  
+// .classes
+  // margin-top: 50px
+  // max-width: $width_class*4+30px*4
+  // margin-left: auto
+  // margin-right: auto
+
+// 課程小卡片
+.classbox
+  width: $width_class
+  // padding: $padding_class
+  // padding-bottom: 0px
+  // box-sizing: border-box
+  background-color: white
+  // 文字深灰色
+  color: $color_dark_grey
+  // 圓角
+  border-radius: 5px
+  // 陰影
+  +bsha 
+  // cursor: pointer
+  display: inline-block
+  margin: 25px 15px
+  // text-align: left 
+  // text-decoration: none
+  
+  &:hover
+    // 滑鼠進入時放大
+    & .classpicture
+      transform: scale(1.13)
+    .top .bookbtn
+      bottom: 10px
+    .bottom .progressbar .valuebar
+      width: 150px
+
+  // 老師圖片
+  .teacher
+    // 因為浮出框框一半 所以用絕對定位
+    position: absolute
+    // 15px
+    left: $padding_class
+    // 往上突出圖片高度的一半
+    top: -$size_teacher / 2
+    width: $size_teacher
+    height: $size_teacher
+    // background-image: url($url_teacher)
+    // 背景尺寸 左右稱滿上下自動調整
+    background-size: cover
+    // 小白框
+    border: solid 2px white
+    // 變成圓形 圓角半徑為邊長的一半
+    border-radius: 50%
+    // 陰影
+    +bsha
+    // 排序往前
+    z-index: 10  
+
+  // 小卡片上半部      
+  .top
+    height: $height_toppart
+    border-radius: 5px 5px 0px 0px
+    // margin: -15px
+    // margin-bottom: 0px
+    // 隱藏超出部分
+    overflow: hidden
+ 
+    // 課程圖片
+    .classpicture
+      width: 100%
+      height: 100%
+      // +size(100%,100%)
+      // 讓他變成絕對定位 不影響其他元素排列
+      position: absolute
+      left: 0
+      top: 0
+      // 帶入課程圖片url
+      background-image: url($url_class)
+      // 背景圖片尺寸左右撐滿 上下自動調整
+      background-size: cover
+      // 放大漸變
+      transition-duration: 0.3s 
+
+      
+    // 右上角標籤
+    .tag
+      // 寬度為父層的100%
+      width: 100%
+      // 文字居中對齊
+      text-align: center
+      // 上下內邊距
+      padding: 5px 0px
+      // 移動和旋轉
+      transform: translateX(95px) translateY(15px) rotate(45deg)
+      background-color: $color_dark_orange
+      color: white
+      font-weight: 700      
+      // box-shadow: 0px 0px 5px rgba(#fff,0.5)
+    
+    // 左下書籤按鈕  
+    .bookbtn
+      width: 42px
+      height: 42px
+      // +size($size_bookbtn,$size_bookbtn)
+      background-color: white
+      color: $color_dark_orange
+      // 定位在左下角
+      position: absolute
+      left: $padding_class
+      // 滑鼠移進.classbox前bookbtn先藏在下面
+      bottom: -50px
+      // 圓形
+      border-radius: 50% 
+      // 陰影
+      +bsha 
+      cursor: pointer
+      // 只為bottom屬性變化套用漸變
+      transition: bottom 0.4s
+      // text-align: center
+      
+      i
+        position: absolute
+        // 置中
+        left: 50%
+        top: 50%
+        transform: translate(-50%, -50%)
+        // 字體圖標大小
+        font-size: $size_icon
+        // font-weight: 500
+        
+        // +ab_center 
+        
+      &:hover
+        background-color: $color_dark_orange
+        & i
+          color: white
+  
+    
+
+    
+// 小卡片下半部    
+.bottom
+  height: $height_bottompart
+  padding: $padding_class
+
+  // 課程名稱
+  .classtitle
+    margin-top: 0px
+    font-size: $size_title
+  
+  // 詳細資訊
+  .texts
+    font-size: $size_para
+    // padding-top: 0px
+    // padding-bottom: 4px
+    // 增加字距
+    letter-spacing: 1px
+    // font-weight: 400
+  
+    .pricerow 
+      // height: $height_pricerow
+      // position: relative
+      // padding-bottom: 7px
+      // 下外邊距
+      margin-bottom: 10px
+
+      // .preprice,
+      // .lastday
+        // display: inline-block
+        // position: absolute
+
+      // 剩餘天數
+      .lastday
+        // 定位使剩餘天數與預購價排在一行
+        position: absolute
+        top: 0
+        right: 0
+        // right: 0px
+  
+    .progressbar
+      height: 10px
+      margin-bottom: 10px    　
+      // height: $height_progressbar
+      border-radius: 5px
+      // 因為橘色部分被.valuebar遮住了 所以用overflow: hidden讓超出圓角的部分隱藏
+      overflow: hidden 
+      // 進度條的背景淺灰色 使用darken(顏色, 加深程度) 加深顏色
+      background-color: darken($color_grey, 7)
+  
+      .valuebar
+        background-color: $color_orange
+        width: 50px
+        // 高度撐滿父層
+        height: 100%
+        transition-duration: 1s
+// 底部橘色條  
+.orangebar
+  position: absolute
+  bottom: 0px
+  height: $height_bottomorange
+  background-color: $color_dark_orange
+  width: 100%
+  // margin: 0px (-$padding_class)
+  // padding: 0px $padding_class
+  border-radius: 0px 0px 5px 5px  
+.nowpeople 
+  // padding: 10px
+  // padding-top: 5px
+  // padding-bottom: 0px
+  text-align: center
+  
+
+  
+
+      
